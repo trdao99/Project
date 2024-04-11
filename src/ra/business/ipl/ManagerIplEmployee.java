@@ -5,6 +5,7 @@ import ra.business.entity.Department;
 import ra.business.entity.Employee;
 import ra.utils.IOFile;
 import ra.utils.InputMethods;
+import ra.utils.Pagination;
 
 import java.io.Serializable;
 import java.time.DateTimeException;
@@ -15,7 +16,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class ManagerIpl_EMPLOYEE implements Imanager_EMPLOYEE, Serializable {
+public class ManagerIplEmployee implements Imanager_EMPLOYEE, Serializable {
     List<Employee> managerEmployee = IOFile.readFromFile(IOFile.EMPLOYEE_PATH);
     List<Department> departmentList = IOFile.readFromFile(IOFile.DEPARTMENT_PATH);
     Scanner scanner = new Scanner(System.in);
@@ -33,9 +34,7 @@ public class ManagerIpl_EMPLOYEE implements Imanager_EMPLOYEE, Serializable {
 
     @Override
     public void displayData() {
-        for (Employee employee : managerEmployee) {
-            System.out.println(employee);
-        }
+        Pagination.pagination(managerEmployee);
     }
 
     @Override

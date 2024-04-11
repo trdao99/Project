@@ -1,22 +1,27 @@
 package ra.presentation;
 
 
+import ra.business.ipl.ManagerIpLProject;
 import ra.utils.InputMethods;
+
 import java.io.Serializable;
 
 public class ManagerMenu implements Serializable {
     public void displayMenuManagerment() {
-        ManagerMenu_EMPLOYEE imanager_e = new ManagerMenu_EMPLOYEE();
-        ManagerMenu_CUSTOMER imanager_c = new ManagerMenu_CUSTOMER();
-        ManagerMenu_DEPARTMENT imanager_d = new ManagerMenu_DEPARTMENT();
-        ManagerMenu_CONTRACT imanager_con = new ManagerMenu_CONTRACT();
+        ManagerMenuEmployee imanager_e = new ManagerMenuEmployee();
+        ManagerMenuCustomer imanager_c = new ManagerMenuCustomer();
+        ManagerMenuDepartment imanager_d = new ManagerMenuDepartment();
+        ManagerMenuContract imanager_con = new ManagerMenuContract();
+        ManagerMenuProject imanager_p = new ManagerMenuProject();
         out:
         do {
             System.out.println("===================Managerment=================\n" +
                     "1.Manager_Employee\n" +
                     "2.Manager_Customer\n" +
-                    "3.Manager_Department\n"+
-                    "4.Manager_Contract\n");
+                    "3.Manager_Department\n" +
+                    "4.Manager_Contract\n" +
+                    "5.Manager_Project\n" +
+                    "6.exit\n");
             System.out.println("Nhap chuc nang");
             byte choice = InputMethods.getByte();
             switch (choice) {
@@ -32,11 +37,14 @@ public class ManagerMenu implements Serializable {
                 case 4:
                     imanager_con.ManagerMenu_CONTRACT();
                     break;
+                case 5:
+                    imanager_p.ManagerMenuProject();
+                    break;
                 case 6:
                     break out;
                 default:
                     System.err.println("khon hop le");
             }
-        }while (true) ;
+        } while (true);
     }
 }

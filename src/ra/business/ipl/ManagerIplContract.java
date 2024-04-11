@@ -6,11 +6,12 @@ import ra.business.entity.Customer;
 import ra.business.entity.Employee;
 import ra.utils.IOFile;
 import ra.utils.InputMethods;
+import ra.utils.Pagination;
 
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagerIpl_CONTRACT implements IContract {
+public class ManagerIplContract implements IContract {
     List<Contract> contractList = IOFile.readFromFile(IOFile.CONTRACT_PATH);
     Scanner sc = new Scanner(System.in);
     boolean flag = true;
@@ -22,9 +23,7 @@ public class ManagerIpl_CONTRACT implements IContract {
 
     @Override
     public void displayData() {
-        for (Contract contract : contractList) {
-            System.out.println(contract);
-        }
+        Pagination.pagination(contractList);
     }
 
     @Override
@@ -64,6 +63,18 @@ public class ManagerIpl_CONTRACT implements IContract {
         }
     }
 
+    @Override
+    public void changeStatus() {
+        System.out.println("nhập ID hợp đồng muốn thay đổi");
+        int id = InputMethods.getInteger();
+        for (int i = 0; i < contractList.size(); i++) {
+            if (contractList.get(i).getCustomerId() == id) {
+                contractList.get(i).setStatus(!contractList.get(i).isStatus());
+                break;
+            }
+        }
+    }
+
     Contract inputData() {
         List<Customer> managerCustomer = IOFile.readFromFile(IOFile.CUSTOMER_PATH);
         List<Employee> managerEmployee = IOFile.readFromFile(IOFile.EMPLOYEE_PATH);
@@ -77,6 +88,7 @@ public class ManagerIpl_CONTRACT implements IContract {
         contract.inputCreatedDate();
         contract.inputExpiryDate();
         contract.inputPriority();
+        contract.InputStatus();
         return contract;
     }
 }

@@ -2,8 +2,10 @@ package ra.business.ipl;
 
 import ra.business.design.Imanager_CUSTOMER;
 import ra.business.entity.Customer;
+import ra.business.entity.User;
 import ra.utils.IOFile;
 import ra.utils.InputMethods;
+import ra.utils.Pagination;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -12,8 +14,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManagerIpl_CUSTOMER implements Imanager_CUSTOMER {
+import static ra.business.entity.Enum.USER;
+import static ra.utils.IOFile.USER_PATH;
+
+public class ManagerIplCustomer implements Imanager_CUSTOMER {
     List<Customer> managerCustomer = IOFile.readFromFile(IOFile.CUSTOMER_PATH);
+    List<User> userList = IOFile.readFromFile(USER_PATH);
     Scanner scanner = new Scanner(System.in);
     boolean flag = true;
 
@@ -29,9 +35,7 @@ public class ManagerIpl_CUSTOMER implements Imanager_CUSTOMER {
 
     @Override
     public void displayData() {
-        for (Customer customer : managerCustomer) {
-            System.out.println(customer);
-        }
+        Pagination.pagination(managerCustomer);
     }
 
     @Override
@@ -146,6 +150,20 @@ public class ManagerIpl_CUSTOMER implements Imanager_CUSTOMER {
                 System.out.println("Lựa chọn không hợp lệ. Độ ưu tiên mặc định là bình thường.");
                 customer.setPriority("Khách hàng Bình thường");
                 break;
+        }
+        System.out.println("chọn ID tài khoản liên kết  :");
+        boolean checkAcc = true;
+        userList.stream().filter(v -> v.getRole().equals(USER)).forEach(System.out::println);
+        int choiceAcc = InputMethods.getInteger();
+        for (User user : userList) {
+            if (user.getId() == choiceAcc) {
+                customer.setAccountID(user.getId());
+                checkAcc = false;
+                break;
+            }
+        }
+        if(checkAcc){
+            customer.setAccountID(-1);
         }
         return customer;
     }

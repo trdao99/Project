@@ -4,7 +4,6 @@ package ra.presentation;
 import ra.business.design.IAuthication;
 import ra.business.entity.User;
 import ra.business.ipl.AuthenticationService;
-import ra.utils.IOFile;
 import ra.utils.InputMethods;
 
 import java.util.ArrayList;

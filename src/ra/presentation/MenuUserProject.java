@@ -4,7 +4,7 @@ import ra.business.design.IUser_PROJECT;
 import ra.business.ipl.UserProjectManagerIpL;
 import ra.utils.InputMethods;
 
-public class MenuUser_PROJECT {
+public class MenuUserProject {
     public void MenuUser_PROJECT() {
         IUser_PROJECT userProject = new UserProjectManagerIpL();
         out:

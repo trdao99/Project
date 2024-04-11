@@ -1,8 +1,9 @@
 package ra.business.entity;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Project {
+public class Project implements Serializable {
     private int projectId;
     private String projectName;
     private String projectDescription;
@@ -108,5 +109,10 @@ public class Project {
 
     public void setTechnology(String technology) {
         this.technology = technology;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ID : %d | tên dự án : %s | mô tả dự án : %s | ID hợp đồng : %d | ID leader : %d | tổng thành viên : %d | ngày bắt đầu dự án : %s | ngày kết thúc dự án : %s | status : %s | công nghệ :%s ", projectId, projectName, projectDescription, contractId, leader_id, totalMember, startDate, endDate, status?"đang thực hiện":"đã hoàn thành", technology);
     }
 }

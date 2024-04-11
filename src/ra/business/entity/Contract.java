@@ -19,11 +19,12 @@ public class Contract implements Serializable {
     private float totalAmount;
     private String description;
     private int priority;
+    private boolean status;
 
     public Contract() {
     }
 
-    public Contract(int contractId, String contractName, int employeeID, int customerId, LocalDate createdDate, LocalDate expiryDate, float totalAmount, String description, int priority) {
+    public Contract(int contractId, String contractName, int employeeID, int customerId, LocalDate createdDate, LocalDate expiryDate, float totalAmount, String description, int priority, boolean status) {
         this.contractId = contractId;
         this.contractName = contractName;
         this.employeeID = employeeID;
@@ -33,6 +34,15 @@ public class Contract implements Serializable {
         this.totalAmount = totalAmount;
         this.description = description;
         this.priority = priority;
+        this.status = status;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public int getContractId() {
@@ -108,8 +118,28 @@ public class Contract implements Serializable {
     }
 
     public void inputContractId() {
-        System.out.println("Nhập mã hợp đồng:");
-        this.contractId = InputMethods.getInteger();
+        List<Contract> contractList = IOFile.readFromFile(IOFile.CONTRACT_PATH);
+        boolean checkID = true;
+        while (true) {
+            System.out.println("Nhập mã hợp đồng:");
+            Byte newID = InputMethods.getByte();
+            if (contractList != null) {
+                for (Contract contract : contractList) {
+                    if (contract.getContractId() == contractId) {
+                        checkID = false;
+                        System.err.println("ID đã tồn tại");
+                    }
+                }
+                if (checkID) {
+                    this.contractId = newID;
+                    break;
+                }
+            }
+            else{
+                this.contractId = newID;
+                break;
+            }
+        }
     }
 
     public void inputContractName() {
@@ -136,7 +166,6 @@ public class Contract implements Serializable {
 
     // Hàm để nhập mã khách hàng từ danh sách khách hàng
     public void inputCustomerId(List<Customer> customers) {
-
         System.out.println("chọn khách hàng theo ID:");
         for (Customer c : customers) {
             System.out.println(c);
@@ -150,7 +179,6 @@ public class Contract implements Serializable {
             }
         }
     }
-
 
     public void inputCreatedDate() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -215,14 +243,14 @@ public class Contract implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Mã hợp đồng: %d | Tên hợp đồng: %s | Nhân viên phụ trách: %d | Khách hàng: %d - %s | Ngày kí: %s | Ngày hết hạn: %s | Tổng tiền: %.2f | Mô tả: %s | Độ ưu tiên: %d | Loại khách hàng: %s\n",
+        return String.format("Mã hợp đồng: %d | Tên hợp đồng: %s | Nhân viên phụ trách: %d | Khách hàng: %d - %s | Ngày kí: %s | Ngày hết hạn: %s | Tổng tiền: %.2f | Mô tả: %s | Độ ưu tiên: %d | trạng thái : %s | Loại khách hàng: %s\n",
                 contractId, contractName, employeeID, customerId,
                 getCustomerName(),
                 createdDate,
                 expiryDate,
                 totalAmount,
                 description,
-                priority, getPriorityDescription());
+                priority, status ? "đang thực hiện" : "đã hoàn thành", getPriorityDescription());
     }
 
     private String getPriorityDescription() {
@@ -238,6 +266,19 @@ public class Contract implements Serializable {
         }
     }
 
+    public boolean InputStatus() {
+        System.out.println("chọn status (1:đang thực hiện / 2: đã hoàn thành )");
+        int statusChoice = InputMethods.getInteger();
+        return switch (statusChoice) {
+            case 1 -> this.status = true;
+            case 2 -> this.status = false;
+            default -> {
+                System.out.println("mặc định chọn (đang thực hiện)");
+                yield this.status = false;
+            }
+        };
+    }
+
     private String getCustomerName() {
         List<Customer> managerCustomer = IOFile.readFromFile(IOFile.CUSTOMER_PATH);
         for (Customer c : managerCustomer) {
@@ -248,4 +289,3 @@ public class Contract implements Serializable {
         return null;
     }
 }
-

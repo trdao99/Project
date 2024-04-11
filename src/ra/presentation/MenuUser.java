@@ -1,17 +1,16 @@
 package ra.presentation;
 
 
-import ra.business.ipl.UserProjectManagerIpL;
 import ra.utils.InputMethods;
 
 public class MenuUser {
     public void displayMenuUser() {
-        MenuUser_PROJECT menuP = new MenuUser_PROJECT();
-        MenuUser_ACCOUNT account = new MenuUser_ACCOUNT();
+        MenuUserProject menuP = new MenuUserProject();
+        MenuUserAccount account = new MenuUserAccount();
        out: while (true) {
             System.out.println("chao mung toi trang nguoi dung");
-            System.out.println("1.Quản lý hợp đồng\n" +
-                    "2.Quản lý tài khoản\n" +
+            System.out.println("1.Quản lý tài khoản\n" +
+                    "2.Quản lý hợp đồng\n" +
                     "3.exit");
             System.out.println("Nhap chuc nang");
             byte choice = InputMethods.getByte();

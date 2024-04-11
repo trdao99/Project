@@ -2,13 +2,12 @@ package ra.business.ipl;
 
 import ra.business.design.IAdmin;
 import ra.business.design.IAuthication;
+import ra.business.entity.*;
 import ra.business.entity.Enum;
-import ra.business.entity.User;
 import ra.utils.IOFile;
 import ra.utils.InputMethods;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,9 +38,7 @@ public class AdminIpl implements IAdmin, Serializable {
     @Override
     public void displayData() {
         List<User> userList = IOFile.readFromFile(USER_PATH);
-        for (User user : userList) {
-            System.out.println(user);
-        }
+        userList.stream().filter(v -> v.getRole().equals(Enum.MANAGERMENT) || v.getRole().equals(Enum.USER)).forEach(System.out::println);
     }
 
     @Override
@@ -134,7 +131,6 @@ public class AdminIpl implements IAdmin, Serializable {
                 }
             } else {
                 System.err.println("tên đăng nhập phải có ít nhất 6 kí tự");
-
             }
         }
         while (true) {
@@ -150,5 +146,40 @@ public class AdminIpl implements IAdmin, Serializable {
         }
         authic.register(user, Enum.USER);
         System.out.println("Dang ki thanh cong");
+    }
+
+    @Override
+    public void statistical() {
+        List<Contract> contractList = IOFile.readFromFile(IOFile.CONTRACT_PATH);
+        List<Project> projectList = IOFile.readFromFile(IOFile.PROJECT_PATH);
+        out:
+        while (true) {
+            System.out.println("1.Thống kê số lượng (khách hàng, hợp đồng, dự án)\n" +
+                    "2.Xem danh sách dự án theo hợp đồng\n" +
+                    "3.exit\n");
+            System.out.println("chọn chức năng");
+            byte choice = InputMethods.getByte();
+            switch (choice) {
+                case 1:
+                    System.out.printf("số lượng khách hàng: %d\n" +
+                            "số lượng hợp đồng : %d\n" +
+                            "số lượng dự án : %d\n");
+                    break;
+                case 2:
+                    System.out.println("chọn hợp đồng muốn xem:");
+                    for(Contract contract : contractList) {
+                        System.out.println(contract);
+                    }
+                    byte choose = InputMethods.getByte();
+                    for(Project project : projectList) {
+                        if(choose == project.getContractId()){
+                            System.out.println(project);
+                        }
+                    }
+                    break;
+                case 3:
+                    break out;
+            }
+        }
     }
 }

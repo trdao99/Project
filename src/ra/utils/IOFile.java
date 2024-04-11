@@ -10,6 +10,7 @@ public class IOFile {
     public static final String CUSTOMER_PATH = "src/ra/data/customer.txt";
     public static final String EMPLOYEE_PATH = "src/ra/data/employeePath.txt";
     public static final String CONTRACT_PATH = "src/ra/data/contractData.txt";
+    public static final String PROJECT_PATH = "src/ra/data/projectData.txt";
 
     public static <T> void writeToFile(String path, List<T> list) {
         File file = new File(path);
@@ -22,8 +23,6 @@ public class IOFile {
             oos.writeObject(list);
             oos.flush();
             oos.close();
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
@@ -53,7 +52,7 @@ public class IOFile {
         } catch (FileNotFoundException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         } catch (EOFException e) {
-            e.printStackTrace();
+            System.out.println(" ");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

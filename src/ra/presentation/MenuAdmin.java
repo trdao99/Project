@@ -22,8 +22,9 @@ public class MenuAdmin {
             System.out.println("chao mung toi trang quan tri");
             System.out.println("1.thêm tài khoản\n" +
                     "2.Xem danh sách tài khoản\n" +
-                    "3.Khóa mở tài khoản\n " +
-                    "4.exit");
+                    "3.Khóa mở tài khoản\n" +
+                    "4. thống kê\n " +
+                    "5.exit");
             System.out.println("Nhap chuc nang");
             byte choice = InputMethods.getByte();
             switch (choice) {
@@ -37,6 +38,9 @@ public class MenuAdmin {
                     admin.blockAcc();
                     break;
                 case 4:
+                    admin.statistical();
+                    break;
+                case 5:
                     break out;
                 default:
                     System.err.println("Lua chon khong hop le");

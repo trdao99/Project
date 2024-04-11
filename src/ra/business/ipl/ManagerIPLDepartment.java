@@ -5,6 +5,7 @@ import ra.business.entity.Department;
 import ra.business.entity.Employee;
 import ra.utils.IOFile;
 import ra.utils.InputMethods;
+import ra.utils.Pagination;
 
 import java.io.Serializable;
 import java.util.Comparator;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 
-public class ManagerIPL_DEPARTMENT implements IDepartment, Serializable {
+public class ManagerIPLDepartment implements IDepartment, Serializable {
     List<Department> departmentList = IOFile.readFromFile(IOFile.DEPARTMENT_PATH);
     Scanner sc = new Scanner(System.in);
     boolean flag = true;
@@ -29,9 +30,7 @@ public class ManagerIPL_DEPARTMENT implements IDepartment, Serializable {
 
     @Override
     public void displayData() {
-        for (Department department : departmentList) {
-            System.out.println(department);
-        }
+        Pagination.pagination(departmentList);
     }
 
     @Override

@@ -1,38 +1,39 @@
 package ra.presentation;
 
-import ra.business.design.Imanager_EMPLOYEE;
-import ra.business.ipl.ManagerIpl_EMPLOYEE;
+import ra.business.design.Imanager_CUSTOMER;
+import ra.business.ipl.ManagerIplCustomer;
 import ra.utils.InputMethods;
+import java.io.Serializable;
 
-public class ManagerMenu_EMPLOYEE {
-    public void EmployeeMenu_EMPLOYEE() {
-        Imanager_EMPLOYEE imanager_employee = new ManagerIpl_EMPLOYEE();
+public class ManagerMenuCustomer implements Serializable{
+    public void EmployeeMenu_CUSTOMER() {
+        Imanager_CUSTOMER imanager_customer = new ManagerIplCustomer();
         out:
         do {
             System.out.println("chao mung toi trang quản lý");
-            System.out.println("1.Thêm mới employee\n" +
-                    "2.Xem danh sách employee\n" +
-                    "3.Cập nhật thông tin employee\n" +
-                    "4.Xóa nhân viên\n" +
+            System.out.println("1.Thêm mới customer\n" +
+                    "2.Xem danh sách customer\n" +
+                    "3.Cập nhật thông tin customer\n" +
+                    "4.Xóa customer\n" +
                     "5.Tìm kiếm theo tên\n" +
                     "6.exit");
             System.out.println("Nhap chuc nang");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
-                    imanager_employee.addData();
+                    imanager_customer.addData();
                     break;
                 case 2:
-                    imanager_employee.displayData();
+                    imanager_customer.displayData();
                     break;
                 case 3:
-                    imanager_employee.updateData();
+                    imanager_customer.updateData();
                     break;
                 case 4:
-                    imanager_employee.delData();
+                    imanager_customer.delData();
                     break;
                 case 5:
-                    imanager_employee.searchData();
+                    imanager_customer.searchData();
                     break;
                 case 6:
                     break out;

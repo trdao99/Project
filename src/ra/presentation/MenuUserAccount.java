@@ -4,7 +4,7 @@ import ra.business.design.IUser_ACCOUNT;
 import ra.business.ipl.UserAccountManagerIpL;
 import ra.utils.InputMethods;
 
-public class MenuUser_ACCOUNT {
+public class MenuUserAccount {
     void MenuUser_ACCOUNT() {
         IUser_ACCOUNT iUser_account = new UserAccountManagerIpL();
         out:
