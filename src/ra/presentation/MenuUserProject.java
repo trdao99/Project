@@ -9,10 +9,14 @@ public class MenuUserProject {
         IUser_PROJECT userProject = new UserProjectManagerIpL();
         out:
         while (true) {
-            System.out.println("1.Xem hợp đồng\n" +
-                    "2.Xem dự án \n" +
-                    "3.exit");
-            System.out.println("Nhap chuc nang");
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("║          Chào mừng đến với trang người dùng      ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║  1. Xem hợp đồng                                 ║");
+            System.out.println("║  2. Xem dự án                                    ║");
+            System.out.println("║  3. Exit                                         ║");
+            System.out.println("╚══════════════════════════════════════════════════╝");
+            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -24,7 +28,7 @@ public class MenuUserProject {
                 case 3:
                     break out;
                 default:
-                    System.err.println("Lua chon khong hop le");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
                     break;
             }
         }

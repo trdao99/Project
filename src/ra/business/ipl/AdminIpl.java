@@ -38,7 +38,15 @@ public class AdminIpl implements IAdmin, Serializable {
     @Override
     public void displayData() {
         List<User> userList = IOFile.readFromFile(USER_PATH);
-        userList.stream().filter(v -> v.getRole().equals(Enum.MANAGERMENT) || v.getRole().equals(Enum.USER)).forEach(System.out::println);
+        for (int i = 0; i < userList.size(); i++) {
+            if (userList.get(i).getRole().equals(Enum.USER) || userList.get(i).getRole().equals(Enum.MANAGERMENT)) {
+                if (!userList.get(i).getStatus()) {
+                    System.out.println("\u001B[31m" + userList.get(i) + "\u001B[0m");
+                } else {
+                    System.out.println(userList.get(i));
+                }
+            }
+        }
     }
 
     @Override
@@ -152,28 +160,41 @@ public class AdminIpl implements IAdmin, Serializable {
     public void statistical() {
         List<Contract> contractList = IOFile.readFromFile(IOFile.CONTRACT_PATH);
         List<Project> projectList = IOFile.readFromFile(IOFile.PROJECT_PATH);
+        List<Customer> managerCustomer = IOFile.readFromFile(IOFile.CUSTOMER_PATH);
         out:
         while (true) {
-            System.out.println("1.Thống kê số lượng (khách hàng, hợp đồng, dự án)\n" +
-                    "2.Xem danh sách dự án theo hợp đồng\n" +
-                    "3.exit\n");
+            System.out.println("╔═════════════════════════════╗");
+            System.out.println("║       MENU LỰA CHỌN         ║");
+            System.out.println("╠═════════════════════════════╣");
+            System.out.println("║ 1. Thống kê số lượng        ║");
+            System.out.println("║    (khách hàng, hợp đồng,   ║");
+            System.out.println("║     dự án)                  ║");
+            System.out.println("╠═════════════════════════════╣");
+            System.out.println("║ 2. Xem danh sách dự án      ║");
+            System.out.println("║    theo hợp đồng            ║");
+            System.out.println("╠═════════════════════════════╣");
+            System.out.println("║ 3. Exit                     ║");
+            System.out.println("╚═════════════════════════════╝");
             System.out.println("chọn chức năng");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
-                    System.out.printf("số lượng khách hàng: %d\n" +
-                            "số lượng hợp đồng : %d\n" +
-                            "số lượng dự án : %d\n");
+                    System.out.println("╔══════════════════════════════════════════");
+                    System.out.printf("║ Số lượng khách hàng: %d\n", managerCustomer.size());
+                    System.out.printf("║ Số lượng hợp đồng: %d\n", contractList.size());
+                    System.out.printf("║ Số lượng dự án: %d\n", projectList.size());
+                    System.out.println("╚══════════════════════════════════════════");
                     break;
                 case 2:
                     System.out.println("chọn hợp đồng muốn xem:");
-                    for(Contract contract : contractList) {
+                    for (Contract contract : contractList) {
                         System.out.println(contract);
                     }
                     byte choose = InputMethods.getByte();
-                    for(Project project : projectList) {
-                        if(choose == project.getContractId()){
+                    for (Project project : projectList) {
+                        if (choose == project.getContractId()) {
                             System.out.println(project);
+                            System.out.println("---------------------------------");
                         }
                     }
                     break;

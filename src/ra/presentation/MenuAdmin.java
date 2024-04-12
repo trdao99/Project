@@ -19,13 +19,16 @@ public class MenuAdmin {
         out:
         do {
             IAdmin admin = new AdminIpl();
-            System.out.println("chao mung toi trang quan tri");
-            System.out.println("1.thêm tài khoản\n" +
-                    "2.Xem danh sách tài khoản\n" +
-                    "3.Khóa mở tài khoản\n" +
-                    "4. thống kê\n " +
-                    "5.exit");
-            System.out.println("Nhap chuc nang");
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("║             Chào mừng đến với trang quản trị     ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║  1. Thêm tài khoản                               ║");
+            System.out.println("║  2. Xem danh sách tài khoản                      ║");
+            System.out.println("║  3. Khóa mở tài khoản                            ║");
+            System.out.println("║  4. Thống kê                                     ║");
+            System.out.println("║  5. Exit                                         ║");
+            System.out.println("╚══════════════════════════════════════════════════╝");
+            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -43,7 +46,7 @@ public class MenuAdmin {
                 case 5:
                     break out;
                 default:
-                    System.err.println("Lua chon khong hop le");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
                     break;
             }
         }

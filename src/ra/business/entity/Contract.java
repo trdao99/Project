@@ -219,9 +219,9 @@ public class Contract implements Serializable {
 
     public void inputPriority() {
         System.out.println("Chọn độ ưu tiên:");
-        System.out.println("1. Khách hàng VIP");
-        System.out.println("2. Khách hàng Tiềm năng");
-        System.out.println("3. Khách hàng Bình thường");
+        System.out.println("1. Hight");
+        System.out.println("2. Medium");
+        System.out.println("3. Low");
         int priorityChoice = InputMethods.getInteger();
 
         switch (priorityChoice) {
@@ -243,7 +243,7 @@ public class Contract implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Mã hợp đồng: %d | Tên hợp đồng: %s | Nhân viên phụ trách: %d | Khách hàng: %d - %s | Ngày kí: %s | Ngày hết hạn: %s | Tổng tiền: %.2f | Mô tả: %s | Độ ưu tiên: %d | trạng thái : %s | Loại khách hàng: %s\n",
+        return String.format("Mã hợp đồng: %d | Tên hợp đồng: %s | Nhân viên phụ trách: %d | Khách hàng: %d - %s | Ngày kí: %s | Ngày hết hạn: %s | Tổng tiền: %.2f | Mô tả: %s | Độ ưu tiên: %d | trạng thái : %s | Loại hợp đồng: %s\n",
                 contractId, contractName, employeeID, customerId,
                 getCustomerName(),
                 createdDate,
@@ -256,11 +256,11 @@ public class Contract implements Serializable {
     private String getPriorityDescription() {
         switch (priority) {
             case 1:
-                return "Khách hàng VIP";
+                return "\u001B[34mHigh\u001B[0m";
             case 2:
-                return "Khách hàng Tiềm năng";
+                return "\u001B[33mMedium\u001B[0m";
             case 3:
-                return "Khách hàng Bình thường";
+                return "Low";
             default:
                 return "Không xác định";
         }

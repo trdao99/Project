@@ -131,8 +131,8 @@ public class ManagerIplCustomer implements Imanager_CUSTOMER {
             }
         }
         System.out.println("Chọn độ ưu tiên:");
-        System.out.println("1. Khách hàng VIP");
-        System.out.println("2. Khách hàng Tiềm năng");
+        System.out.println("1. \u001B[35mKhách hàng VIP\u001B[0m");
+        System.out.println("2. \u001B[33mKhách hàng Tiềm năng\u001B[0m");
         System.out.println("3. Khách hàng Bình thường");
         int priorityChoice = InputMethods.getInteger();
 

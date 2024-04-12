@@ -15,14 +15,17 @@ public class ManagerMenu implements Serializable {
         ManagerMenuProject imanager_p = new ManagerMenuProject();
         out:
         do {
-            System.out.println("===================Managerment=================\n" +
-                    "1.Manager_Employee\n" +
-                    "2.Manager_Customer\n" +
-                    "3.Manager_Department\n" +
-                    "4.Manager_Contract\n" +
-                    "5.Manager_Project\n" +
-                    "6.exit\n");
-            System.out.println("Nhap chuc nang");
+            System.out.println("╔═══════════════════ Management ═══════════════════╗\n" +
+                    "║                                                  ║\n" +
+                    "║           1. Employee Management                 ║\n" +
+                    "║           2. Customer Management                 ║\n" +
+                    "║           3. Department Management               ║\n" +
+                    "║           4. Contract Management                 ║\n" +
+                    "║           5. Project Management                  ║\n" +
+                    "║           6. Exit                                ║\n" +
+                    "║                                                  ║\n" +
+                    "╚══════════════════════════════════════════════════╝");
+            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -43,7 +46,7 @@ public class ManagerMenu implements Serializable {
                 case 6:
                     break out;
                 default:
-                    System.err.println("khon hop le");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
             }
         } while (true);
     }

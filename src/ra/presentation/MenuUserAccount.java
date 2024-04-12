@@ -9,11 +9,15 @@ public class MenuUserAccount {
         IUser_ACCOUNT iUser_account = new UserAccountManagerIpL();
         out:
         while (true) {
-            System.out.println("1.Xem thông tin cá nhân\n" +
-                    "2.Xem thông tin tài khoản \n" +
-                    "3.Đổi mật khẩu\n" +
-                    "4.exit");
-            System.out.println("Nhap chuc nang");
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("║             Chào mừng đến với trang người dùng   ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║  1. Xem thông tin cá nhân                        ║");
+            System.out.println("║  2. Xem thông tin tài khoản                      ║");
+            System.out.println("║  3. Đổi mật khẩu                                 ║");
+            System.out.println("║  4. Exit                                         ║");
+            System.out.println("╚══════════════════════════════════════════════════╝");
+            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -28,7 +32,7 @@ public class MenuUserAccount {
                 case 4:
                     break out;
                 default:
-                    System.err.println("Lua chon khong hop le");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
                     break;
             }
         }

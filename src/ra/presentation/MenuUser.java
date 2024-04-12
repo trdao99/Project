@@ -8,11 +8,14 @@ public class MenuUser {
         MenuUserProject menuP = new MenuUserProject();
         MenuUserAccount account = new MenuUserAccount();
        out: while (true) {
-            System.out.println("chao mung toi trang nguoi dung");
-            System.out.println("1.Quản lý tài khoản\n" +
-                    "2.Quản lý hợp đồng\n" +
-                    "3.exit");
-            System.out.println("Nhap chuc nang");
+           System.out.println("╔══════════════════════════════════════════════════╗");
+           System.out.println("║           Chào mừng đến với trang người dùng     ║");
+           System.out.println("╠══════════════════════════════════════════════════╣");
+           System.out.println("║  1. Quản lý tài khoản                            ║");
+           System.out.println("║  2. Quản lý hợp đồng                             ║");
+           System.out.println("║  3. Exit                                         ║");
+           System.out.println("╚══════════════════════════════════════════════════╝");
+           System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -24,7 +27,7 @@ public class MenuUser {
                 case 3:
                     break out;
                 default:
-                    System.err.println("Lua chon khong hop le");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
                     break;
             }
         }

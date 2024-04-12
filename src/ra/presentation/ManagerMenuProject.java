@@ -10,14 +10,18 @@ public class ManagerMenuProject {
     public void ManagerMenuProject() {
         Imanager_PROJECT ipl = new ManagerIpLProject();
         while(true){
-            System.out.println("=== Quản lý dự án ===");
-            System.out.println("1. Thêm mới dự án");
-            System.out.println("2. Hiển thị danh sách");
-            System.out.println("3. Chỉnh sửa thông tin");
-            System.out.println("4. Cập nhật trạng thái");
-            System.out.println("0. Thoát");
-            System.out.println("====================");
-            System.out.print("Nhập lựa chọn của bạn: ");
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("║              Chào mừng đến trang quản lý         ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║                   MENU QUẢN LÝ DỰ ÁN             ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║  1. Thêm mới dự án                               ║");
+            System.out.println("║  2. Xem danh sách dự án                          ║");
+            System.out.println("║  3. Cập nhật thông tin dự án                     ║");
+            System.out.println("║  4. Cập nhật trạng thái                          ║");
+            System.out.println("║  0. Exit                                         ║");
+            System.out.println("╚══════════════════════════════════════════════════╝");
+            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
@@ -36,7 +40,7 @@ public class ManagerMenuProject {
                     System.out.println("Đã thoát chương trình.");
                     return;
                 default:
-                    System.out.println("Lựa chọn không hợp lệ. Vui lòng thử lại.");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
             }
         }
     }

@@ -9,13 +9,18 @@ public class ManagerMenuEmployee {
         Imanager_EMPLOYEE imanager_employee = new ManagerIplEmployee();
         out:
         do {
-            System.out.println("chao mung toi trang quản lý");
-            System.out.println("1.Thêm mới employee\n" +
-                    "2.Xem danh sách employee\n" +
-                    "3.Cập nhật thông tin employee\n" +
-                    "4.Xóa nhân viên\n" +
-                    "5.Tìm kiếm theo tên\n" +
-                    "6.exit");
+            System.out.println("╔══════════════════════════════════════════════════╗");
+            System.out.println("║              Chào mừng đến trang quản lý         ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║                   MENU QUẢN LÝ EMPLOYEE          ║");
+            System.out.println("╠══════════════════════════════════════════════════╣");
+            System.out.println("║  1. Thêm mới employee                            ║");
+            System.out.println("║  2. Xem danh sách employee                       ║");
+            System.out.println("║  3. Cập nhật thông tin employee                  ║");
+            System.out.println("║  4. Xóa employee                                 ║");
+            System.out.println("║  5. Tìm kiếm theo tên                            ║");
+            System.out.println("║  6. Exit                                         ║");
+            System.out.println("╚══════════════════════════════════════════════════╝");
             System.out.println("Nhap chuc nang");
             byte choice = InputMethods.getByte();
             switch (choice) {
@@ -37,7 +42,7 @@ public class ManagerMenuEmployee {
                 case 6:
                     break out;
                 default:
-                    System.err.println("Lua chon khong hop le");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
                     break;
             }
         } while (true);

@@ -109,6 +109,21 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("ID : %d | Name : %s | Phone : %d | email :%s | adress : %s | birthday : %s | Note : %s | sex : %s | priority : %s | account_ID : %d", customerId, customerName, customerPhone,customerEmail,customerAddress,birthDay,note,sex?"Nam" : "Nữ ",priority, AccountID);
+        return String.format("ID : %d | Name : %s | Phone : %d | email : %s | adress : %s | birthday : %s | Note : %s | sex : %s | priority : %s | account_ID : %d",
+                customerId, customerName, customerPhone, customerEmail, customerAddress, birthDay, note,
+                sex ? "Nam" : "Nữ", getPriorityDescription(), AccountID);
+    }
+
+    private String getPriorityDescription() {
+        switch (priority) {
+            case "Khách hàng VIP":
+                return "\u001B[34mKhách hàng VIP\u001B[0m";
+            case "Khách hàng Tiềm năng":
+                return "\u001B[33mKhách hàng Tiềm năng\u001B[0m";
+            case "Khách hàng Bình thường":
+                return "Khách hàng Bình thường";
+            default:
+                return "Không xác định";
+        }
     }
 }

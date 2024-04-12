@@ -19,74 +19,81 @@ public class Main {
     private static final IAuthication authication = new AuthenticationService();
     public static User user = null;
     public static List<User> Login = new ArrayList<>();
+
     public static void main(String[] args) {
 
-        while (true){
-            System.out.println("++++++++++++++++++++++++MENU+++++++++++++++++++++++");
-            System.out.println("1. Dang nhap");
-            System.out.println("2. Thoat");
-            System.out.println("Nhap chuc nang");
+        while (true) {
+            System.out.println("══════════════════════════════════════════════════");
+            System.out.println("                    MENU                        ");
+            System.out.println("══════════════════════════════════════════════════");
+            System.out.println("  1. Đăng nhập                                  ");
+            System.out.println("  2. Thoát                                      ");
+            System.out.println("                                                ");
+            System.out.println("══════════════════════════════════════════════════");
+            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
-            switch (choice){
+            switch (choice) {
                 case 1:
                     Login.clear();
                     login();
                     break;
                 case 2:
-                    System.out.println("Thoat");
+                    System.out.println("Thoát");
+                    break;
                 default:
-                    System.err.println("Lua chon khong hop le");
+                    System.err.println("⚠ Lựa chọn không hợp lệ");
             }
-            if (choice==2){
+            if (choice == 2) {
                 break;
             }
         }
     }
-    public static void login(){
-        System.out.println("----------Dang nhap--------------");
-        System.out.println("Nhap username :");
-        String username  = InputMethods.getString();
-        System.out.println("Nhap password :");
-        String password  = InputMethods.getString();
+
+    public static void login() {
+        System.out.println("═════════════════════════ Đăng nhập ════════════════════════");
+        System.out.print("\tNhập username: ");
+        String username = InputMethods.getString();
+        System.out.print("\tNhập password: ");
+        String password = InputMethods.getString();
         User userLogin;
 
-         userLogin =  authication.login(username,password);
+        userLogin = authication.login(username, password);
 
-        if (userLogin==null){
-            System.err.println("Tai khoan hoac mat khau khong chinh xac");
-            System.out.println("1. Tiep tuc dang nhap");
-            System.out.println("2. Thoat");
-            System.out.println("------Nhap lua chon--------");
+        if (userLogin == null) {
+            System.err.println("⚠ Tài khoản hoặc mật khẩu không chính xác");
+            System.out.println("1. Tiếp tục đăng nhập");
+            System.out.println("2. Thoát");
+            System.out.println("------ Nhập lựa chọn ------");
             byte choice = InputMethods.getByte();
-            switch (choice){
+            switch (choice) {
                 case 1:
                     login();
                     break;
                 case 2:
                     return;
                 default:
-                    System.err.println("nhap lua chon ko chinh xac");
+                    System.err.println("⚠ Nhập lựa chọn không chính xác");
             }
-        }else {
-            if (userLogin.getRole().equals(ADMIN)){
+        } else {
+            if (userLogin.getRole().equals(ADMIN)) {
                 user = userLogin;
                 MenuAdmin.getInstance().displayMenuAdmin();
-            }else if (userLogin.getRole().equals(USER)){
-                if (!userLogin.getStatus()){
-                    System.err.println("Tai khoan da bi khoa, vui long lien he admin (01234568988)");
-                }else {
+            } else if (userLogin.getRole().equals(USER)) {
+                if (!userLogin.getStatus()) {
+                    System.err.println("⚠ Tài khoản đã bị khóa, vui lòng liên hệ admin (01234568988)");
+                } else {
                     user = userLogin;
                     menuUser.displayMenuUser();
                 }
-            }else if (userLogin.getRole().equals(MANAGERMENT)){
-                if (!userLogin.getStatus()){
-                    System.err.println("Tai khoan da bi khoa, vui long lien he admin (01234568988)");
-                }else {
+            } else if (userLogin.getRole().equals(MANAGERMENT)) {
+                if (!userLogin.getStatus()) {
+                    System.err.println("⚠ Tài khoản đã bị khóa, vui lòng liên hệ admin (01234568988)");
+                } else {
                     user = userLogin;
                     managerMenu.displayMenuManagerment();
                 }
-            }else {
-                System.err.println("khong co quyen truy cap");
+            } else {
+                System.err.println("⚠ Không có quyền truy cập");
             }
         }
     }
