@@ -2,7 +2,10 @@ package ra.presentation;
 
 import ra.business.design.IAdmin;
 import ra.business.ipl.AdminIpl;
+import ra.utils.IOFile;
 import ra.utils.InputMethods;
+
+import static ra.presentation.Main.Login;
 
 public class MenuAdmin {
     private static MenuAdmin menuAdmin = new MenuAdmin();
@@ -26,7 +29,7 @@ public class MenuAdmin {
             System.out.println("║  2. Xem danh sách tài khoản                      ║");
             System.out.println("║  3. Khóa mở tài khoản                            ║");
             System.out.println("║  4. Thống kê                                     ║");
-            System.out.println("║  5. Exit                                         ║");
+            System.out.println("║  5. Logout                                       ║");
             System.out.println("╚══════════════════════════════════════════════════╝");
             System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
@@ -44,6 +47,8 @@ public class MenuAdmin {
                     admin.statistical();
                     break;
                 case 5:
+                    Login.clear();
+                    IOFile.writeToFile(IOFile.LOGINUSER_PATH, Login);
                     break out;
                 default:
                     System.err.println("⚠ Nhập lựa chọn không chính xác");

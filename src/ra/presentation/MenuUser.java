@@ -1,7 +1,10 @@
 package ra.presentation;
 
 
+import ra.utils.IOFile;
 import ra.utils.InputMethods;
+
+import static ra.presentation.Main.Login;
 
 public class MenuUser {
     public void displayMenuUser() {
@@ -13,7 +16,7 @@ public class MenuUser {
            System.out.println("╠══════════════════════════════════════════════════╣");
            System.out.println("║  1. Quản lý tài khoản                            ║");
            System.out.println("║  2. Quản lý hợp đồng                             ║");
-           System.out.println("║  3. Exit                                         ║");
+           System.out.println("║  3. Logout                                       ║");
            System.out.println("╚══════════════════════════════════════════════════╝");
            System.out.println("\t\t═════════nhập chức năng═════════");
             byte choice = InputMethods.getByte();
@@ -25,6 +28,8 @@ public class MenuUser {
                     menuP.MenuUser_PROJECT();
                     break;
                 case 3:
+                    Login.clear();
+                    IOFile.writeToFile(IOFile.LOGINUSER_PATH, Login);
                     break out;
                 default:
                     System.err.println("⚠ Nhập lựa chọn không chính xác");

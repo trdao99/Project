@@ -11,6 +11,7 @@ public class IOFile {
     public static final String EMPLOYEE_PATH = "src/ra/data/employeePath.txt";
     public static final String CONTRACT_PATH = "src/ra/data/contractData.txt";
     public static final String PROJECT_PATH = "src/ra/data/projectData.txt";
+    public static final String LOGINUSER_PATH = "src/ra/data/login.txt";
 
     public static <T> void writeToFile(String path, List<T> list) {
         File file = new File(path);

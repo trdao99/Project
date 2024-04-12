@@ -4,6 +4,7 @@ package ra.presentation;
 import ra.business.design.IAuthication;
 import ra.business.entity.User;
 import ra.business.ipl.AuthenticationService;
+import ra.utils.IOFile;
 import ra.utils.InputMethods;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class Main {
     private static final ManagerMenu managerMenu = new ManagerMenu();
     private static final IAuthication authication = new AuthenticationService();
     public static User user = null;
-    public static List<User> Login = new ArrayList<>();
+    public static List<User> Login = IOFile.readFromFile(IOFile.LOGINUSER_PATH);
 
     public static void main(String[] args) {
 
@@ -34,7 +35,6 @@ public class Main {
             byte choice = InputMethods.getByte();
             switch (choice) {
                 case 1:
-                    Login.clear();
                     login();
                     break;
                 case 2:
@@ -50,11 +50,19 @@ public class Main {
     }
 
     public static void login() {
-        System.out.println("═════════════════════════ Đăng nhập ════════════════════════");
-        System.out.print("\tNhập username: ");
-        String username = InputMethods.getString();
-        System.out.print("\tNhập password: ");
-        String password = InputMethods.getString();
+        String username ;
+        String password ;
+        if (Login.isEmpty()) {
+            System.out.println("═════════════════════════ Đăng nhập ════════════════════════");
+            System.out.print("\tNhập username: ");
+            username = InputMethods.getString();
+            System.out.print("\tNhập password: ");
+            password = InputMethods.getString();
+        }
+        else{
+            username = Login.get(0).getUsername();
+            password = Login.get(0).getPassword();
+        }
         User userLogin;
 
         userLogin = authication.login(username, password);

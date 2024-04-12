@@ -18,7 +18,7 @@ public class Pagination {
                 }
                 System.out.println("════════════════════════════════════════════════");
                 if (k >= 1) {
-                    System.out.println("<==1. Trang trước");
+                    System.out.print("<==1. Trang trước\t");
                     flag2 = true;
                 } else {
                     flag2 = false;

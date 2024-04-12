@@ -8,12 +8,12 @@ import ra.business.entity.User;
 import ra.utils.IOFile;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 import static ra.business.entity.Enum.ADMIN;
 import static ra.presentation.Main.Login;
+import static ra.utils.IOFile.LOGINUSER_PATH;
 import static ra.utils.IOFile.USER_PATH;
 
 
@@ -38,7 +38,9 @@ public class AuthenticationService implements IAuthication, Serializable {
         }
         boolean checkLogin = BCrypt.checkpw(password, userLogin.getPassword()); // kiem tra mat khau khop hay khong
         if (checkLogin) {
+            userLogin.setPassword(password);
             Login.add(userLogin);
+            IOFile.writeToFile(LOGINUSER_PATH,Login);
             return userLogin;
         }
         return null;
